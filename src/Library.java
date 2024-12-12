@@ -77,11 +77,11 @@ public class Library {
         if(!it.hasNext())
             return null;
 
-        Book bokk = it.next();
+        Book bokkk = it.next();
         List<Book> bookList = resultByDate(it, fDate, tDate);
 
-        if(bokk.getDate() > fDate && bokk.getDate() < tDate){
-            bookList.add(0,bokk);
+        if(bokkk.getDate() > fDate && bokkk.getDate() < tDate){
+            bookList.add(0,bokkk);
         }
 
         return bookList;
