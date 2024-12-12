@@ -50,4 +50,5 @@ public class Book implements Searchable {
     public String getTitle() {
         return this.title;
     }
+    public Integer getDate(){return year;}
 }

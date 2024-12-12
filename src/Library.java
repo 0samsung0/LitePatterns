@@ -1,5 +1,6 @@
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -42,7 +43,7 @@ public class Library {
     public Book findBooks(String query){
         if(!books.isEmpty()){
             for(Book b : books){
-                if(query == b.getTitle()){
+                if(b.matches(query)){
                     return b;
                 }
             }
@@ -54,4 +55,39 @@ public class Library {
     public List<Book> listBook(){
         return books;
     }
+
+    public String searchByDate(Integer fromDate, Integer toDate){
+        return resultByDate(new Iterator<Book>() {
+
+            private ListIterator<Book> bkTo = books.listIterator();
+
+            @Override
+            public boolean hasNext() {
+                return bkTo.hasNext();
+            }
+
+            @Override
+            public Book next() {
+                return bkTo.next();
+            }
+        }, fromDate, toDate).toString();
+    }
+
+    protected List<Book> resultByDate(Iterator<Book> it, Integer fDate, Integer tDate){
+        if(!it.hasNext())
+            return null;
+
+        Book bokk = it.next();
+        List<Book> bookList = resultByDate(it, fDate, tDate);
+
+        if(bokk.getDate() > fDate && bokk.getDate() < tDate){
+            bookList.add(0,bokk);
+        }
+
+        return bookList;
+    }
+
+
+
+
 }
