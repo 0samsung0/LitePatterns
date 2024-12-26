@@ -1,23 +1,26 @@
 import java.util.Scanner;
 
-public class Book implements Searchable {
+public class Book implements Searchable, ScannerInterface {
     private String title;
     private String author;
     private Integer year;
     private Genre genre;
-    Scanner au = new Scanner(System.in);
+    private String link;
+    Scanner scan;
 
     Book(String ttl, String auth, Integer ye, Genre gnr){
         this.author = auth;
         this.title = ttl;
         this.year = ye;
         this.genre = gnr;
+        this.scan = ScannerInterface.scan();
     }
     Book(){
         title = au.nextLine();
         author = au.nextLine();
         year = au.nextInt();
         genre = Genre.valueOf(au.nextLine().toUpperCase());
+        this.scan = ScannerInterface.scan();
     }
 
     public void SetBook(String ttl, String auth, Integer ye, Genre gnr){

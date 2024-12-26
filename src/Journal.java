@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
-public class Journal implements Searchable{
+public class Journal implements Searchable, ScannerInterface{
     private String title;
     private String author;
     private String publisher;
     private Genre genre;
-    Scanner au = new Scanner(System.in);
-
+    private String link;
+    Scanner scan;
 
 
 
@@ -19,18 +19,21 @@ public class Journal implements Searchable{
         this.title = ttl;
         this.publisher = ye;
         this.genre = gnr;
+        this.scan = ScannerInterface.scan();
+        // добавить абстр.класс и там реализовать field(super.scan = ScannerInterface)
     }
     Journal(){
         title = au.nextLine();
         author = au.nextLine();
         publisher = au.nextLine();
         genre = Genre.valueOf(au.nextLine().toUpperCase());
+        scan = ScannerInterface.scan();
     }
 
     public void SetBook(String ttl, String auth, String ye, Genre gnr){
         this.author = auth;
         this.title = ttl;
-        this.year = ye;
+        this.publisher = ye;
         this.genre = gnr;
     }
 
@@ -43,7 +46,7 @@ public class Journal implements Searchable{
     }
 
     public String returnAuthor(){return author;}
-    public Integer returnYear(){return year;}
+    public String returnPublisher(){return publisher;}
     public String returnTitle(){return title;}
     public String returnGenre(){return genre.name().toString();}
 
@@ -57,7 +60,7 @@ public class Journal implements Searchable{
     public String getTitle() {
         return this.title;
     }
-    public Integer getDate(){return year;}
+    public String getPublisher(){return publisher;}
 }
 
 

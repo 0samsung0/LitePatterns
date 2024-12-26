@@ -1,14 +1,13 @@
+import java.util.Date;
 import java.util.Scanner;
 
-public class Publication implements Searchable {
+public class Publication implements Searchable , ScannerInterface {
     private String title;
     private String author;
-    private Integer year;
+    private Date datePublic;
     private Genre genre;
-    Scanner au = new Scanner(System.in);
-
-
-
+    private String link;
+    Scanner scan;
 
 
 
@@ -19,12 +18,14 @@ public class Publication implements Searchable {
         this.title = ttl;
         this.year = ye;
         this.genre = gnr;
+        this.scan = ScannerInterface.scan();
     }
     Publication(){
         title = au.nextLine();
         author = au.nextLine();
         year = au.nextInt();
         genre = Genre.valueOf(au.nextLine().toUpperCase());
+        this.scan = ScannerInterface.scan();
     }
 
     public void SetBook(String ttl, String auth, Integer ye, Genre gnr){
